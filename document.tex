@@ -1,5 +1,6 @@
 
 
+
 \documentclass[10pt,twocolumn]{article}
 
 % use the oxycomps style file
@@ -33,15 +34,12 @@
 \maketitle
 
 \section{Problem Statement }
-Climate change and global warming are global concerns where the implications are crucial and urgent. Changes to Earth's climate are driven by increased human emissions of greenhouse gases and these effects are seen having widespread effects on the environment. This concern is not a future problem as it was reported that effects that had long predicted would result from global climate change are now occurring, such as sea ice loss, accelerated sea level rise, and longer, more intense heat waves. Furthermore, these environmental implications impact various sectors of society and are interrelated. For instance, factors such as drought and flooding not only could cause damages to ecosystems and infrastructure, but could also impact food production and human health. In addition, these implications would exacerbate socio-economic inequalities as affected areas with less resources will be more vulnerable. Human activity will ultimately determine the severity of the effects caused by climate change and with any further delay in global action to reduce the causes of climate change, a future of a habitable environment could be missed.
+Climate change and global warming are global concerns where the implications are crucial and urgent. Changes to Earth's climate are driven by increased human emissions of greenhouse gases and these effects are seen having widespread effects on the environment. This concern is not a future problem as it was reported that effects that had long predicted would result from global climate change are now occurring, such as sea ice loss, accelerated sea level rise, and longer, more intense heat waves\cite{2}. Furthermore, these environmental implications impact various sectors of society and are interrelated. For instance, factors such as drought and flooding not only could cause damages to ecosystems and infrastructure, but could also impact food production and human health\cite{2}.
 
-Solar radiation prediction plays a critical role in optimizing renewable energy systems and advancing climate science. This project focuses on predicting Global Horizontal Irradiance (GHI) using machine learning techniques, leveraging data from the National Solar Radiation Database (NSRDB).  Global Horizontal Irradiance (GHI) is a critical measure in solar energy applications, representing the total solar radiation received on a horizontal surface at a given location. Accurate prediction of GHI is essential for optimizing solar energy systems, enhancing energy efficiency, and supporting the integration of renewable energy into the grid. However, modeling GHI is challenging due to the complex interplay of atmospheric conditions, geographic factors, and temporal variations.
+Solar radiation prediction plays a critical role in optimizing renewable energy systems and advancing climate science. This project focuses on predicting Global Horizontal Irradiance (GHI), an indicator of solar radiance, using machine learning techniques by leveraging data from the National Solar Radiation Database (NSRDB).  Accurate prediction of GHI is essential for optimizing solar energy systems, enhancing energy efficiency, and supporting the integration of renewable energy into the grid. However, modeling GHI is challenging due to the complex interplay of atmospheric conditions, geographic factors, and temporal variations.
 
 This paper explores and compares different machine learning techniques—linear regression, decision trees, and stacking regressors—for modeling and predicting GHI at a given location. The primary goal is to assess the effectiveness of each technique in capturing the intricate patterns of solar radiation and providing reliable predictions.
 
-.
-
-Solar energy systems require accurate radiation forecasts to optimize their efficiency. Challenges could be faced regarding limitations in handling non-linear relationships and dynamic environmental factors. The implications of this project could extend to environmental sustainability and economic efficiency, showcasing its broader significance in combating climate change and advancing green technologies.
 
 \section{Technical Background}
 
@@ -193,15 +191,14 @@ This project was influenced by these findings to prioritize feature selection. T
 GHI is the most commonly used target variable in solar radiation prediction due to its direct relevance to solar energy applications. Representing the total solar radiation received on a horizontal surface, GHI serves as a key input for designing and optimizing photovoltaic systems. Accurate GHI prediction is essential for estimating solar energy potential, improving energy efficiency, and supporting grid integration of solar power.
 
 The paper 'Global Horizontal Irradiance' \cite{8}, emphasize that GHI prediction benefits from ensemble models that leverage diverse features and data sources. GHI's dependence on meteorological and temporal variables necessitates incorporating these factors into predictive models to capture its inherent variability. This insight guided the focus on GHI as the primary target variable in this project, ensuring alignment with real-world solar energy applications.
+\section{Ethical Considerations}
 
-\subsection{Key Takeaways}
-\begin{itemize}
-    \item \textbf{Model Exploration:} Linear regression serves as a baseline but struggles with complex patterns. Decision trees effectively capture nonlinear relationships, while stacking regressors combine the strengths of multiple models to achieve higher accuracy.
-    \item \textbf{Feature Selection:} Selecting relevant features, such as temperature, humidity, pressure, and temporal variables, is crucial for improving model performance and reducing computational overhead. Tree-based methods provide robust feature importance metrics.
-    \item \textbf{Target Variable Selection:} GHI is the preferred target variable due to its applicability in solar energy projects. Accurate prediction of GHI supports efficient design and operation of solar systems.
-\end{itemize}
+Ethical considerations are pivotal in the development of climate technologies like Solar Radiation Management (SRM) and solar radiation prediction models. SRM, as discussed by Svoboda, involves reflecting solar radiation back into space to mitigate global warming \cite{11}. While promising, it raises concerns of moral hazard, procedural injustice, and intergenerational burdens. For example, unilateral deployment could marginalize vulnerable populations and create dependency for future generations.
 
-By leveraging linear regression, decision trees, and stacking regressors, along with robust feature and target variable selection techniques, this study aims to advance the field of solar radiation modeling. These approaches ensure accurate, interpretable, and computationally efficient predictions of GHI, facilitating the development of sustainable energy solutions. Insights from the literature not only guided the choice of models but also informed the importance of feature selection and the use of GHI as the target variable, ensuring the project's alignment with best practices in solar radiation prediction.
+
+
+
+By leveraging linear regression, decision trees, and stacking regressors, along with robust feature and target variable selection techniques, this study aims to advance the field of solar radiation modeling. These approaches ensure accurat and interpretable  predictions of GHI, facilitating the development of sustainable energy solutions. Insights from the literature not only guided the choice of models but also informed the importance of feature selection and the use of GHI as the target variable, ensuring the project's alignment with best practices in solar radiation prediction.
 
 \bibliographystyle{unsrt}
 \bibliography{references}
@@ -210,80 +207,71 @@ By leveraging linear regression, decision trees, and stacking regressors, along 
 
 \section{Methods}
 
-The methodology involved data collection, target variable selection, data preprocessing, feature selection, model selection, model training, and evaluation to systematically analyze and predict Global Horizontal Irradiance (GHI) using various modeling techniques . 
+The methodology involved data collection, target variable selection, data preprocessing, feature selection, model selection, model training, and evaluation to systematically analyze and predict Global Horizontal Irradiance (GHI) using various modeling techniques. The approach was carefully designed, justified with respect to prior literature, and supported by intermediate decisions aimed at achieving robust predictions.
 
 \subsection{Data Acquisition} 
 \subsubsection{Database}
-The datasets utilized for this study was sourced from the National Solar Radiation Database (NSRDB), a comprehensive dataset maintained by the National Renewable Energy Laboratory (NREL). The NSRDB is a trusted resource that provides high-resolution solar radiation data, offering information critical for solar energy research, system design, and performance assessment. The dataset is freely available and has been widely used in renewable energy projects and academic research.
-\subsubsection{Dataset content}
-The datasets collected for this study were specifically extracted for predefined geographic locations based on given latitude and longitude coordinates. All the datasets studied included the same features. For each location (specific latitude and longitude), data was retrieved for a specified year, ensuring temporal consistency in the analysis. Each dataset includes 27 distinct features, encompassing meteorological,atmospheric, solar radiation features, cloud-related, and temporal features. Examples of some features included in the dataset include solar radiation metrics such as Global Horizontal Irradiance (GHI), Direct Normal Irradiance (DNI), and Diffuse Horizontal Irradiance (DHI), as well as additional parameters like air temperature, relative humidity, wind speed, atmospheric pressure, and cloud cover. Temporal features such as hour, day, and month provide further granularity.
-This alignment with prior work ensures the datasets contain all critical variables influencing solar radiation, facilitating robust predictive modeling and meaningful comparisons with established methodologies. The resulting data forms a foundation for the analysis, reflecting diversity and ensuring compatibility with proven solar energy modeling practices.
+The datasets utilized for this study were sourced from the National Solar Radiation Database (NSRDB), a comprehensive resource maintained by the National Renewable Energy Laboratory (NREL). The NSRDB provides high-resolution solar radiation data, which is widely recognized and employed in renewable energy projects and academic research. The dataset's accessibility and proven reliability ensured compliance with ethical standards and compatibility with prior work.
 
+\subsubsection{Dataset Content}
+The datasets were extracted for predefined geographic locations based on latitude and longitude coordinates. Each dataset included consistent features and was retrieved for a specified year to ensure temporal alignment. The datasets encompassed 27 features spanning meteorological, atmospheric, solar radiation, cloud-related, and temporal variables. Key features included Global Horizontal Irradiance (GHI), Direct Normal Irradiance (DNI), Diffuse Horizontal Irradiance (DHI), air temperature, relative humidity, wind speed, atmospheric pressure, and cloud cover. Temporal features such as hour, day, and month added granularity.
 
+The inclusion of variables aligned with prior literature, ensuring that the dataset captured critical factors influencing solar radiation. This alignment facilitated meaningful comparisons with established methodologies while providing a robust foundation for predictive modeling.
 
 \subsection{Target Variable Selection}
-The target variable selection process involved determining Global Horizontal Irradiance (GHI) as the primary variable for prediction, compared to other solar radiation metrics such as Direct Normal Irradiance (DNI), Diffuse Horizontal Irradiance (DHI), and Global Normal Irradiance (GNI). This decision was based on both practical relevance and the scope of this study. Furthermore, this variable seemed to most frequently studied as the target variable in other works. Because this variable represents the total amount of solar radiation received on a horizontal surface and combines both DNI (direct sunlight) and DHI (diffuse radiation scattered by the atmosphere), it makes the most comprehensive and practical measure for photovoltaic (PV) systems, which typically operate on flat or slightly tilted surfaces.  GHI’s practicality, versatility, and relevance to solar energy applications make it the most appropriate target variable for this study, offering significant advantages over other solar radiation indicators.
-\subsection{Feature Exploration}
+The target variable selection process focused on identifying GHI as the primary metric for prediction, in comparison to other solar radiation indicators such as DNI, DHI, and Global Normal Irradiance (GNI). GHI's comprehensive nature, capturing both direct and diffuse solar radiation, made it the most practical and widely applicable measure for photovoltaic (PV) systems, which typically operate on flat or slightly tilted surfaces. Additionally, GHI's frequent use in prior studies highlighted its relevance and ensured alignment with existing research. By selecting GHI, this study aimed to maximize the practical utility and generalizability of the predictive models.
 
-The initial step in the methodology involved exploring the relationships between features and the target variable, \textit{Global Horizontal Irradiance (GHI)}. This feature exploration was conducted using scatter plots, correlation heatmaps, and other visualizations to gain insights into the nature of these relationships and inform subsequent model selection.
+\subsection{Feature Exploration}
+Initial feature exploration examined the relationships between the predictors and GHI using scatter plots, correlation matrices, and visual analytics. This step informed model selection by identifying linear and nonlinear dependencies in the data.
 
 \subsubsection{Linear Relationships}
-Certain features exhibited predominantly linear relationships with GHI, making them well-suited for linear regression models:
+Features with predominantly linear relationships included:
 \begin{itemize}
-    \item \textbf{Temperature}: A positive linear relationship was observed, where GHI increases with rising temperature.
-    \item \textbf{Hour of the Day}: GHI followed a predictable linear trend during the morning (increasing) and evening (decreasing), aligned with the diurnal solar cycle.
+    \item \textbf{Temperature}: A positive linear trend, indicating that GHI increases with rising temperature.
+    \item \textbf{Hour of the Day}: Predictable linear variations aligned with the diurnal solar cycle.
 \end{itemize}
 
 \subsubsection{Nonlinear Relationships}
-Several features demonstrated strong nonlinear relationships with GHI, highlighting the need for models capable of handling complex patterns:
+Nonlinear relationships highlighted the complexity of the dataset, necessitating models capable of capturing such patterns:
 \begin{itemize}
-    \item \textbf{Cloud Type}: Different cloud types showed varying impacts on GHI, with certain clouds causing significant reductions and others having minimal effects.
-    \item \textbf{Solar Zenith Angle}: A nonlinear curve was evident, where GHI peaked when the zenith angle was small (sun directly overhead) and decreased as the angle increased.
-    \item \textbf{Relative Humidity}: GHI exhibited a threshold effect, with very high humidity levels leading to substantial reductions in solar radiation.
+    \item \textbf{Cloud Type}: Variations in cloud type significantly affected GHI.
+    \item \textbf{Solar Zenith Angle}: GHI peaked at small zenith angles and decreased nonlinearly as the angle increased.
+    \item \textbf{Relative Humidity}: Threshold effects showed significant reductions in GHI at high humidity levels.
 \end{itemize}
-
 
 \subsection{Model Selection}
-Once the data was explored  the process of choosing the  most appropriate machine learning algorithm of the prediction task was implemented. For this study,  three predictive models were chosen: Linear Regression, Decision Tree Regressor, and Stacking Regressor. The selection of these models was driven by the need to explore both linear and nonlinear relationships in the dataset while maintaining a balance between simplicity, interpretability, and predictive performance.
-\subsubsection{Implications for Model Selection}
-The insights from feature exploration guided the choice of models:
+Three predictive models were chosen to address the identified linear and nonlinear relationships:
 \begin{itemize}
-    \item \textbf{Linear Regression}: Suitable for features with linear relationships, such as temperature and hour.
-    \item \textbf{Decision Tree Regressor}: Capable of capturing nonlinear dependencies, such as those observed in cloud type and zenith angle.
-    \item \textbf{Stacking Regressor}: Leveraged both linear and nonlinear relationships by combining the strengths of linear regression and decision trees, making it the most effective model overall.
+    \item \textbf{Linear Regression}: Simple and interpretable, suitable for features with linear trends.
+    \item \textbf{Decision Tree Regressor}: Captured nonlinear dependencies effectively.
+    \item \textbf{Stacking Regressor}: Combined the strengths of both linear regression and decision trees to enhance accuracy and robustness.
 \end{itemize}
+The selection was guided by insights from feature exploration and prior literature, ensuring that the models addressed the complexities of the dataset while providing interpretable and scalable solutions.
 
-By analyzing the relationships between features and GHI, this step ensured that the selected models were appropriately tailored to the complexities of the dataset, laying a foundation for reasonable predictions.
+\subsection{Feature Selection}
+Feature selection aimed to retain the most impactful predictors while minimizing redundancy. A correlation matrix identified features with strong relationships to GHI, flagging variables with a correlation threshold above 0.07 as significant. The top features included Temperature, Hour, Solar Zenith Angle, Relative Humidity, and Cloud Type. Highly correlated features, such as temporal indicators (e.g., year, month, day) and redundant solar radiation metrics (Clearsky GHI, Clearsky DHI, Clearsky DNI), were removed to avoid multicollinearity. This step streamlined the dataset to 16 features, enhancing interpretability and reducing computational complexity.
 
-
-
- \subsection{Feature Selection}
-Feature selection was a critical step in the data preparation process to ensure that the predictive models focus on the most relevant and impactful variables. This step employed a correlation matrix analysis as a primary method to evaluate the relationships between features and the target variable, Global Horizontal Irradiance (GHI).
-A correlation matrix was generated to examine the correlation relationships between all features and the target variable, GHI. Variables with strong positive or negative correlations to GHI were flagged as important predictors. The top 5 features with the most correlation to GHI were determined to be Temperature, Hour, Solar Zenith Angle, Relative Humidity, and Cloud Type.
 \begin{figure}
-            \centering
-            \includegraphics[width=1\linewidth]{fincorr.png}
-            \caption{Final correlation matrix with reduced features.}
-            \label{fig:enter-label}
-        \end{figure}
-         
-    
+    \centering
+    \includegraphics[width=1\linewidth]{fincorr.png}
+    \caption{Final correlation matrix with reduced features.}
     \label{Figure 1}
-
-
-
+\end{figure}
 
 \subsection{Data Preprocessing}
-Before initiating model training, the dataset/datasets were 
-prepared to ensure its suitability for analysis. This would involve tasks such as cleaning the data to remove errors and inconsistencies. Using the insights from the feature seletcion step, it was determined that feature correlation values less than 0.07 were removed which resulted in 16 remaining features. Additionally, redundant features that exhibited high correlation with one another, such as the remaining solar radiation indicators (Clearsky GHI, Clearsky DHI, Clearsky DNI, DHI, DNI) and temporal indicators (year, month, day), were eliminated to avoid multicollinearity and improve model interpretability. Feature engineering was deemed unnecessary as the dat
-aset already addressed missing values and provided clean, structured data for modeling. 
- 
- 
+Data preprocessing ensured the dataset's suitability for modeling. Cleaning steps addressed inconsistencies and errors, while feature engineering was deemed unnecessary due to the dataset's structured and complete nature. Missing values were already addressed within the NSRDB data collection framework, allowing a focus on feature reduction and preparation for model training.
 
+\subsection{Model Training}
+Models were trained using an 80-20 train-test split, balancing the need for sufficient training data with robust evaluation. This allocation aligned with best practices in machine learning literature, ensuring that the models had adequate exposure to the data for learning while reserving enough samples for independent testing.
 
-\subsection{Model training} The training process for the predictive models was designed to ensure robust evaluation and meaningful comparisons of their performance. The dataset was split into training and testing subsets, with 80 percent of the data allocated for training and 20 percent reserved for testing. This split was chosen to provide sufficient data for training the models while maintaining a substantial portion for independent evaluation.
+\subsection{Hyperparameter Tuning}
+To optimize model performance, hyperparameter tuning was performed, particularly for the decision tree regressor. A grid search technique evaluated combinations of parameters, such as maximum depth, minimum samples per split, and minimum samples per leaf. Cross-validation ensured that the selected parameters generalized well to unseen data, enhancing the model's reliability and accuracy.
 
-\subsection{Hyperparameter Tuning}To optimize model performance, hyperparameters were explored through techniques such as grid search and  random search. This involved experimenting with different parameter combinations and evaluating their impact on model performance using cross-validation particularly for the decision tree regressor.
+\subsection{Alternate Approaches}
+Alternate approaches, such as using deep learning models or unsupervised feature selection techniques, were considered but deemed outside the scope of this study due to computational complexity and data constraints. However, these approaches remain promising for future work, particularly in scenarios requiring real-time prediction or adaptation to larger datasets.
+
+This structured methodology, supported by intermediate decisions and justified by prior work, ensured that the project's goals were met while maintaining alignment with the literature and addressing the complexities of solar radiation prediction.
+
 
 
 
@@ -398,11 +386,36 @@ When the stacking regressor trained on the combined Los Angeles and San Diego da
 
 \subsubsection{Overall Discussion and Analysis}
  \paragraph{} Case Study 1 demonstrated the highest accuracy due to the availability of local data that captured specific climatic patterns. Next, Case Study 2 highlighted the potential of training on geographically similar regions, achieving moderate accuracy with minimal data loss. Finally, Case Study 3 revealed the most challenges, as difficulties of generalizing to San Francisco using data from distant locations were present, with higher errors and reduced robustness. Furthermore, The model's performance was strongly influenced by the geographic and climatic similarity of training data to the target location. Furthermore, neighboring regions (Case Study 2) provided sufficient overlap in climatic patterns, whereas distant regions (Case Study 3) introduced biases due to differences in solar radiation and atmospheric conditions. Additionaly, it  was observed that the stacking regressor effectively captured both linear and nonlinear dependencies, showing robustness across all cases. However, its reliance on high-quality, relevant input data limits its generalizability to regions with distinct microclimates or unique atmospheric patterns. Training on local or geographically similar data is crucial for accurate predictions, particularly for regions with unique weather phenomena. Furthermore, expanding datasets to include additional climatic variables or adaptive models could improve generalizability and reduce prediction errors.
+ \subsection{Alternate Explanations and Caveats}
+While the results achieved by the stacking regressor demonstrate strong predictive capabilities, several alternate explanations and caveats should be considered. First, the accuracy of the model may be partly attributed to the inherent similarities in the geographic and climatic features within the datasets used, particularly for Case Studies 1 and 2. This suggests that the high performance might not generalize to regions with more distinct climatic differences. 
+
+Second, the limited temporal scope of the datasets (e.g., data from a specific year) may have constrained the model's ability to account for seasonal or long-term climate variations. Including multi-year data could provide a more robust understanding of solar radiation patterns.
+
+Additionally, the reliance on specific features, such as temperature and solar zenith angle, while effective, may overlook other influential factors like pollution levels or aerosol concentrations, potentially introducing bias into the predictions. Future work should explore incorporating these additional variables to refine the model.
+
+Finally, the computational complexity of ensemble methods like the stacking regressor, while yielding high accuracy, may limit their applicability for real-time or resource-constrained applications. Simplified models, although less accurate, could be explored for faster predictions where computational resources are limited.
+
+By addressing these caveats and exploring alternative approaches, future iterations of the project could enhance the generalizability, robustness, and practical utility of solar radiation prediction models.
+
   
 
 \section{Ethical Considerations}
 
-Data used in this project is sourced from publicly available repositories, ensuring compliance with ethical standards. However, the potential misuse of predictive models for unsustainable energy practices must be considered. One ethical concern lies in the potential biases introduced by the models due to limitations in the training data. For instance, in this project the data is primarily sourced from specific geographic regions, such as San Francisco, San Mateo, Berkeley, Los Angeles, and San Diego. Hence, this may not generalize well to locations with different climatic or atmospheric conditions. This could raises questions about the applicability and fairness of the models when deployed in underrepresented regions. Furthermore, the reliance on certain features, such as temperature and solar zenith angle, may overlook other factors critical to solar radiation in diverse settings, such as aerosol concentration or local pollution levels. Furthermore, the deployment of solar radiation prediction technology can have significant implications for addressing energy inequities. However, its implementation may inadvertently exacerbate existing inequalities. For isntance, regions with limited technological infrastructure or datasets may be excluded from the benefits of accurate solar radiation predictions, perpetuating global energy disparities. Additionally, advanced solar prediction models may disproportionately benefit wealthier regions with established renewable energy projects, sidelining communities with limited access to solar infrastructure. Ensuring diversity in both data collection and application is critical to the ethical use of these models. Collaboration with local communities to understand their unique solar energy needs and challenges can help adapt models for broader societal impact. Accurate solar radiation prediction models can contribute positively to sustainability and energy equity by enabling and improved predictions could help maximize solar energy production, reducing reliance on non-renewable energy sources. By supporting the expansion of renewable energy, these models could contribute to global efforts to reduce carbon emissions.
+Data used in this project is sourced from the National Solar Radiation Database, which is a publicly available and cost free database, ensuring compliance with the ethical standard of data accessibility. The NSRDB maintains high standards of transparency by providing open access to its datasets, along with detailed documentation on collection methodologies and potential limitations \cite{1}. This ensures that users understand the origins and reliability of the data. Additionally, the NSRDB integrates multiple sources, including ground measurement stations and satellite observations, to provide accurate and unbiased solar radiation data\cite{1}. By excluding personally identifiable information and focusing solely on environmental variables, the NSRDB safeguards privacy while enabling widespread use of its data. The database also emphasizes inclusivity by covering diverse geographic areas and climatic conditions. 
+
+
+While this project strives for inclusivity, limitations in the scope of project due to time constraints may inadvertently introduce biases into machine learning models trained on this data. For instance, this project primarily utilized data from urban regions such as San Francisco, San Mateo, Berkeley, Los Angeles, and San Diego. As a result, models trained on this dataset may underperform in rural or underrepresented areas with different climatic or atmospheric conditions.
+Furthermore, predictive models for solar radiation could face ethical challenges, including data bias and inequitable benefits. Models trained on data from regions like San Francisco or Los Angeles may not generalize well to underrepresented areas, limiting their applicability. Additionally, the focus on specific features, such as temperature, risks overlooking factors critical to diverse environmental contexts.
+
+Drawing from Svoboda’s framework of non-ideal justice, predictive models should prioritize inclusivity, fairness, and transparency\cite{11}. By addressing these ethical considerations, solar radiation technologies can advance climate solutions while promoting global equity and sustainability.
+
+
+
+Solar radiation prediction technologies have the potential to address energy inequities by supporting the development of renewable energy infrastructure. However, their implementation must be approached with caution to avoid exacerbating existing disparities. Regions with limited technological infrastructure or sparse datasets may not benefit equally from these advancements, perpetuating global energy inequities. Moreover, wealthier areas with established renewable energy projects may disproportionately benefit from these models, sidelining communities with limited access to solar infrastructure.
+
+To mitigate these challenges, it is essential to prioritize diversity in data collection and collaborate with local communities to tailor models to their unique needs. By incorporating diverse perspectives and datasets, predictive models can better support global efforts to reduce carbon emissions and promote energy equity.
+
+
 \section{Conclusion}
 
 This project explored the development and evaluation of predictive models for solar radiation, specifically targeting Global Horizontal Irradiance (GHI). Through the use of linear regression, decision tree regression, and a stacking regressor, the study analyzed how different modeling techniques can address both linear and nonlinear dependencies in solar radiation data. The stacking regressor consistently demonstrated superior performance, highlighting the value of ensemble methods in capturing complex relationships.
@@ -610,6 +623,7 @@ This layout ensures that the project is accessible for replication, extensibilit
 \begin{thebibliography}{200}
 
 \bibitem{nsrdb} National Renewable Energy Laboratory. (n.d.). Retrieved from \url{https://nsrdb.nrel.gov/data-viewer}.
+\bibitem{nasa_climate_effects} NASA. (n.d.). Climate Change Effects. Retrieved from \url{https://science.nasa.gov/climate-change/effects/}.
 
 \bibitem{regression_models} Solar Power Prediction using Regression Models. Retrieved from \url{https://www.researchgate.net/publication/366613171_Solar_Power_Prediction_using_Regression_Models}.
 
@@ -636,6 +650,7 @@ This layout ensures that the project is accessible for replication, extensibilit
 \bibitem{human_rights_solar} Solar vs Human Rights: Hidden Ethical Issues with Solar Panels. (n.d.). Retrieved from \url{https://www.frdm.co/blogs/solar-vs-human-rights}.
 
 \bibitem{energy_proceedings} Energy Proceedings. (n.d.). Machine learning models for solar irradiance prediction. Retrieved from \url{https://www.energy-proceedings.org/wp-content/uploads/icae2021/1642315686.pdf}.
+\bibitem{ethics_climate} Svoboda, T. (n.d.). The ethics of climate engineering: Solar radiation management and non-ideal justice. Retrieved from \url{https://ndpr.nd.edu/reviews/the-ethics-of-climate-engineering-solar-radiation-management-and-non-ideal-justice/}.
 
 \end{thebibliography}
 
