@@ -111,6 +111,67 @@ A stacking regression is an ensemble learning technique that combines the predic
 \end{itemize}
 
 By employing these models, the study aims to assess the effectiveness of different machine learning approaches in predicting solar radiation, offering insights into their strengths, limitations, and applicability to renewable energy systems.
+\section{Evaluation Metrics for Model Evaluation}
+The section discusses the metrics used for the evaluation of the machine learning models.
+
+\begin{itemize}
+    \item \textbf{Mean Absolute Error (MAE):}
+    \begin{itemize}
+        \item MAE calculates the average magnitude of errors between the predicted and actual values, providing an intuitive measure of accuracy without considering error direction. It is defined as:
+        \[
+        MAE = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|,
+        \]
+        where \( y_i \) represents actual values and \( \hat{y}_i \) represents predicted values.
+    \end{itemize}
+
+    \item \textbf{Root Mean Squared Error (RMSE):}
+    \begin{itemize}
+        \item RMSE measures the square root of the average squared differences between predicted and actual values, placing greater emphasis on larger errors. It is calculated as:
+        \[
+        RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2}.
+        \]
+    \end{itemize}
+
+    \item \textbf{R-squared (\( R^2 \)):}
+    \begin{itemize}
+        \item  \( R^2 \) quantifies the proportion of variance in the target variable explained by the model. It is expressed as:
+        \[
+        R^2 = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2},
+        \]
+        where \( \bar{y} \) is the mean of actual values.
+    \end{itemize}
+
+    \item \textbf{Predicted R-squared (Cross-Validation):}
+    \begin{itemize}
+        \item  Predicted \( R^2 \) evaluates the model's ability to generalize by computing \( R^2 \) using cross-validation. It indicates how well the model performs on unseen data.
+    \end{itemize}
+\begin{itemize}
+    \item \textbf{Mean Absolute Percentage Error (MAPE):}
+    \begin{itemize}
+        \item  MAPE measures the average percentage difference between predicted and actual values. It is calculated as:
+        \[
+        MAPE = \frac{1}{n} \sum_{i=1}^n \left| \frac{y_i - \hat{y}_i}{y_i} \right| \times 100,
+        \]
+        where \( y_i \) represents actual values and \( \hat{y}_i \) represents predicted values.
+    \end{itemize}
+
+    \item \textbf{Adjusted R-squared:}
+    \begin{itemize}
+        \item  Adjusted \( R^2 \) modifies the \( R^2 \) value to account for the number of predictors in the model, penalizing unnecessary complexity. It is expressed as:
+        \[
+        \text{Adjusted } R^2 = 1 - \frac{(1 - R^2)(n - 1)}{n - p - 1},
+        \]
+        where \( n \) is the number of observations, \( p \) is the number of predictors, and \( R^2 \) is the unadjusted coefficient of determination.
+    \end{itemize}
+
+    \item \textbf{Normalized Metrics:}
+    \begin{itemize}
+        \item  Normalized versions of MAE and RMSE are calculated by dividing these values by the range of the target variable, providing a relative measure of error:
+        \[
+        \text{Normalized MAE} = \frac{MAE}{\text{max}(y) - \text{min}(y)}, \quad \text{Normalized RMSE} = \frac{RMSE}{\text{max}(y) - \text{min}(y)}.
+        \]
+    \end{itemize}
+\end{itemize}
 
 
 \section{Literature Review}
@@ -226,17 +287,61 @@ aset already addressed missing values and provided clean, structured data for mo
 
 
 
-\subsection{Evaluation Metrics}
+\section*{Evaluation Metrics}
 
-Model performance was evaluated using:
+Evaluating the performance of machine learning models is essential to determine how well they address the problem of solar radiation prediction. This section describes the metrics used, their justification based on the literature and problem context, and discusses other potential metrics that were not included.
+
+\subsection*{Metrics Used and Justification}
+
+The following metrics were selected to evaluate the models. Furthermore, it was observed these metrics were widely used in solar radiation studies to evaluate prediction accuracy, as highlighted in prior literature \cite{4}\cite{3}\cite{5}.
 \begin{itemize}
-    \item \textbf{Mean Absolute Error (MAE):} Measures the average magnitude of errors.
-    \item \textbf{Root Mean Squared Error (RMSE):} Highlights the impact of large errors.
-    \item \textbf{R-squared (R\textsuperscript{2}):} Indicates the proportion of variance explained by the model.
-    \item \textbf{Predicted R\textsuperscript{2}:} Validated using cross-validation to ensure generalization.
+    \item \textbf{Mean Absolute Error (MAE):}
+    \begin{itemize}
+        \item This metric was used as it provides an intuitive measure of model accuracy by quantifying how far, on average, the predictions are from the actual values. 
+    \end{itemize}
+
+    \item \textbf{Root Mean Squared Error (RMSE):}
+    \begin{itemize}
+        \item  RMSE is particularly useful in scenarios where large prediction errors need to be penalized. In this project's prediction of GHI, it would help capture extreme deviations due to factors like unpredictable atmospheric conditions.
+    \end{itemize}
+
+    \item \textbf{R-squared (\( R^2 \)):}
+    \begin{itemize}
+        \item \textbf \( R^2 \) is a standard metric in regression analysis and provides an overall measure of model fit. High \( R^2 \) values would indicate that the model captures the variability in GHI effectively.
+    \end{itemize}
+
+    \item \textbf{Predicted R-squared (Cross-Validation):}
+    \begin{itemize}
+        \item \Generalizability is critical for solar radiation models, especially when applying them to different geographic regions. Using the predicted \( R^2 \) would ensure that the model is robust across varied datasets.
+    \end{itemize}
 \end{itemize}
 
-A detailed comparison of these metrics across the three models quantifies their relative effectiveness in predicting GHI. For instance, while the linear regression model provides interpretability, its lower R\textsuperscript{2} score highlights the limitations of linear assumptions.
+\subsection*{Other Metrics and Their Exclusion}
+
+While other metrics could have been used, their exclusion is justified as follows:
+\begin{itemize}
+    \item \textbf{Mean Absolute Percentage Error (MAPE):}
+    \begin{itemize}
+        \item MAPE measures errors as a percentage of actual values. However, it tends to inflate errors when actual values are near zero, making it less suitable for solar radiation datasets with varying magnitudes.
+    \end{itemize}
+
+    \item \textbf{Adjusted R-squared:}
+    \begin{itemize}
+        \item Adjusted \( R^2 \) accounts for the number of predictors in the model, penalizing unnecessary complexity. While useful, it was not prioritized as the models used are inherently simple or based on ensemble techniques.
+    \end{itemize}
+
+    \item \textbf{Normalized Metrics:}
+    \begin{itemize}
+        \item Normalized versions of MAE and RMSE (e.g., dividing by the range of the target variable) were excluded due to the limited benefit in interpretability for this specific problem.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Conclusion on Metric Selection}
+
+The selected metrics—MAE, RMSE, \( R^2 \), and predicted \( R^2 \)—offer a comprehensive evaluation framework for solar radiation prediction models. These metrics align with the problem's requirements by focusing on both accuracy and generalizability, and their selection is supported by existing literature. Future work could explore additional metrics, such as MAPE or adjusted \( R^2 \), if specific aspects like proportional errors or model complexity require emphasis.
+
+
+A detailed comparison of these metrics across the three models would quantify their relative effectiveness in predicting GHI. For instance, while the linear regression model provides interpretability, its lower R\textsuperscript{2} score could highlight the limitations of linear assumptions.
 \section{Case Studies}
 
 Using the presented methodology, the following case studies were explored:
@@ -540,6 +645,3 @@ This layout ensures that the project is accessible for replication, extensibilit
 
 \printbibliography
 \end{document}
-
-
-
