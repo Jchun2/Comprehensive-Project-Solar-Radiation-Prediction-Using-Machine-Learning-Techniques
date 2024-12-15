@@ -55,17 +55,17 @@ The dataset utilized for this study contains several key solar radiation indicat
 
 \subsubsection{Direct Normal Irradiance (DNI)}
 \begin{itemize}
-     DNI measures the amount of solar radiation received per unit area on a surface that is always perpendicular (normal) to the sun's rays. DNI accounts for only the direct beam of sunlight, excluding scattered or reflected radiation. It is highly sensitive to clear sky conditions and obstructions such as clouds or shading. This measure could be critical for concentrating solar power (CSP) systems, which rely exclusively on direct sunlight to generate energy. DNI is also used to calculate GHI and assess solar resource potential.
+     DNI measures the amount of solar radiation received per unit area on a surface that is always perpendicular (normal) to the sun's rays. DNI accounts for only the direct beam of sunlight, excluding scattered or reflected radiation. It is highly sensitive to clear sky conditions and obstructions such as clouds or shading\cite{17}. This measure could be critical for concentrating solar power (CSP) systems, which rely exclusively on direct sunlight to generate energy\cite{17}. DNI is also used to calculate GHI and assess solar resource potential.
 \end{itemize}
 
 \subsubsection{Diffuse Horizontal Irradiance (DHI)}
 \begin{itemize}
-    DHI quantifies the portion of solar radiation that is scattered by the atmosphere and reaches the Earth's surface from all directions. It excludes the direct beam of sunlight. DHI becomes particularly important in cloudy or overcast conditions, where the contribution of direct sunlight is minimal. It reflects the impact of atmospheric conditions on solar radiation. This feature could be useful for designing systems in regions with high cloud cover or for understanding the contribution of diffuse light to overall energy generation.
+    DHI quantifies the portion of solar radiation that is scattered by the atmosphere and reaches the Earth's surface from all directions. It excludes the direct beam of sunlight. DHI becomes particularly important in cloudy or overcast conditions, where the contribution of direct sunlight is minimal\cite{17}. It reflects the impact of atmospheric conditions on solar radiation. This feature could be useful for designing systems in regions with high cloud cover or for understanding the contribution of diffuse light to overall energy generation\cite{17}.
 \end{itemize}
 
 \subsubsection{Global Normal Irradiance (GNI)}
 \begin{itemize}
-     GNI measures the total solar radiation received on a surface that is perpendicular to the sun’s rays. It is similar to DNI but includes the diffuse component when the surface is oriented directly toward the sun. GNI is useful for assessing the potential solar energy capture of surfaces that track the sun throughout the day. This feature can be relevant for solar tracking systems and for calculating energy yield in systems designed to maximize direct sunlight capture.
+     GNI measures the total solar radiation received on a surface that is perpendicular to the sun’s rays. It is similar to DNI but includes the diffuse component when the surface is oriented directly toward the sun. GNI is useful for assessing the potential solar energy capture of surfaces that track the sun throughout the day. This feature can be relevant for solar tracking systems and for calculating energy yield in systems designed to maximize direct sunlight capture\cite{17}.
 \end{itemize}
 
 \subsubsection{Relationship Between Indicators}
@@ -80,6 +80,12 @@ These indicators are interrelated and together provide a complete picture of sol
     \item \textbf{DNI} and \textbf{DHI} are independent components that reflect different aspects of solar radiation—direct and scattered light, respectively.
     \item \textbf{GNI} complements these by considering the orientation of the receiving surface relative to the sun.
 \end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{GHI.png}
+    \caption{Figure representing relationship between indicators.\cite{17}}
+    \label{Figure 1}
+\end{figure}
 
 \subsubsection{Importance in Solar Energy Applications}
 
@@ -95,11 +101,11 @@ The project utilizes three machine learning models: linear regression, decision 
 
 
 \subsubsection{Decision Tree Regression}
-A decision tree regression is a non-linear model that splits the dataset into subsets based on feature values, forming a tree structure. Each split aims to minimize the variance within the resulting subsets. Decision trees can capture complex, nonlinear relationships and interactions between features. They are also interpretable, as the splits provide insight into the importance of features. Decision trees are prone to overfitting, especially with deep trees or when noise is present in the data.
+A decision tree regression is a non-linear model that splits the dataset into subsets based on feature values, forming a tree structure. Each split aims to minimize the variance within the resulting subsets.\cite{21} Decision trees can capture complex, nonlinear relationships and interactions between features. They are also interpretable, as the splits provide insight into the importance of features. Decision trees are prone to overfitting, especially with deep trees or when noise is present in the data.\cite{21}
 \end{itemize}
 
 \subsubsection{Stacking Regression}
-A stacking regression is an ensemble learning technique that combines the predictions of multiple models (e.g., linear regression and decision tree) to produce a final prediction. The combined model, or meta-model, learns how to weight the contributions of the base models.Stacking can capture both linear and nonlinear relationships by leveraging the complementary strengths of different models. It often achieves higher accuracy than individual models. However, stacking could introduces additional computational complexity and may overfit if not properly tuned.
+A stacking regression is an ensemble learning technique that combines the predictions of multiple models (e.g., linear regression and decision tree) to produce a final prediction.\cite{22} The combined model, or meta-model, learns how to weight the contributions of the base models.Stacking can capture both linear and nonlinear relationships by leveraging the complementary strengths of different models.\cite{22} It often achieves higher accuracy than individual models. 
 \end{itemize}
 
 \subsubsection{Comparison and Rationale for Selection}
@@ -120,12 +126,12 @@ The section discusses the metrics used for the evaluation of the machine learnin
         \[
         MAE = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|,
         \]
-        where \( y_i \) represents actual values and \( \hat{y}_i \) represents predicted values.
+        where \( y_i \) represents actual values and \( \hat{y}_i \) represents predicted values.\cite{20}
     \end{itemize}
 
     \item \textbf{Root Mean Squared Error (RMSE):}
     \begin{itemize}
-        \item RMSE measures the square root of the average squared differences between predicted and actual values, placing greater emphasis on larger errors. It is calculated as:
+        \item RMSE measures the square root of the average squared differences between predicted and actual values, placing greater emphasis on larger errors.\cite{20} It is calculated as:
         \[
         RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2}.
         \]
@@ -133,7 +139,7 @@ The section discusses the metrics used for the evaluation of the machine learnin
 
     \item \textbf{R-squared (\( R^2 \)):}
     \begin{itemize}
-        \item  \( R^2 \) quantifies the proportion of variance in the target variable explained by the model. It is expressed as:
+        \item  \( R^2 \) quantifies the proportion of variance in the target variable explained by the model.\cite{20} It is expressed as:
         \[
         R^2 = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2},
         \]
@@ -142,12 +148,12 @@ The section discusses the metrics used for the evaluation of the machine learnin
 
     \item \textbf{Predicted R-squared (Cross-Validation):}
     \begin{itemize}
-        \item  Predicted \( R^2 \) evaluates the model's ability to generalize by computing \( R^2 \) using cross-validation. It indicates how well the model performs on unseen data.
+        \item  Predicted \( R^2 \) evaluates the model's ability to generalize by computing \( R^2 \) using cross-validation. It indicates how well the model performs on unseen data.\cite{20}
     \end{itemize}
 \begin{itemize}
     \item \textbf{Mean Absolute Percentage Error (MAPE):}
     \begin{itemize}
-        \item  MAPE measures the average percentage difference between predicted and actual values. It is calculated as:
+        \item  MAPE measures the average percentage difference between predicted and actual values.\cite{20} It is calculated as:
         \[
         MAPE = \frac{1}{n} \sum_{i=1}^n \left| \frac{y_i - \hat{y}_i}{y_i} \right| \times 100,
         \]
@@ -156,7 +162,7 @@ The section discusses the metrics used for the evaluation of the machine learnin
 
     \item \textbf{Adjusted R-squared:}
     \begin{itemize}
-        \item  Adjusted \( R^2 \) modifies the \( R^2 \) value to account for the number of predictors in the model, penalizing unnecessary complexity. It is expressed as:
+        \item  Adjusted \( R^2 \) modifies the \( R^2 \) value to account for the number of predictors in the model, penalizing unnecessary complexity.\cite{20} It is expressed as:
         \[
         \text{Adjusted } R^2 = 1 - \frac{(1 - R^2)(n - 1)}{n - p - 1},
         \]
@@ -165,7 +171,7 @@ The section discusses the metrics used for the evaluation of the machine learnin
 
     \item \textbf{Normalized Metrics:}
     \begin{itemize}
-        \item  Normalized versions of MAE and RMSE are calculated by dividing these values by the range of the target variable, providing a relative measure of error:
+        \item  Normalized versions of MAE and RMSE are calculated by dividing these values by the range of the target variable, providing a relative measure of error\cite{20}:
         \[
         \text{Normalized MAE} = \frac{MAE}{\text{max}(y) - \text{min}(y)}, \quad \text{Normalized RMSE} = \frac{RMSE}{\text{max}(y) - \text{min}(y)}.
         \]
@@ -184,7 +190,7 @@ Kumari and Toshniwal \cite{14} evaluated linear regression, decision trees, and 
 
 \subsection{Feature Selection and Its Importance}
 Feature selection is a critical step in building accurate and efficient models. Including irrelevant or redundant features can lead to overfitting, increased computational complexity, and reduced interpretability. Studies like 'Effect of Feature Selection on the Prediction of
-Direct Normal Irradiance' \cite{4} highlight the importance of selecting impactful features such as GHI, Direct Normal Irradiance (DNI), and Diffuse Horizontal Irradiance (DHI). By using tree-based models like random forest and XGBoost to assess feature importance, they demonstrated that focusing on key predictors enhances both prediction accuracy and computational efficiency.
+Direct Normal Irradiance' \cite{4} and 'Composition of feature selection techniques for improving the global horizontal irradiance estimation via machine learning models' highlight the importance of selecting impactful features.\cite{17} In 'Composition of feature selection techniques for improving the global horizontal irradiance estimation via machine learning models', features such as  Direct Normal Irradiance (DNI) and Diffuse Horizontal Irradiance (DHI), Clearsky DNI, Clearsky DHI, Solar Zenith Angle, and Temperature were found to be the most impactful features\cite{17}. By using tree-based models like random forest and XGBoost to assess feature importance, they demonstrated that focusing on key predictors enhances both prediction accuracy and computational efficiency. However, features such as DNI, DHI, Clearsky DNI, and Clearsky DHI would be decided to be dropped from my dataset/study as they are other measures of solar radiation. The paper 'Solar irradiance forecasting models using machine learning techniques and digital twin: A case study with comparison' found features such as temperature, cloudiness index, relative humidity, and day of the week were the most critical factors in predicting solar irradiance. The features temperature and solar zenith angle were consistently seen as highly correlated features to solar radiation in various studies.
 
 This project was influenced by these findings to prioritize feature selection. The use of feature importance rankings from decision trees ensured that only the most relevant meteorological and temporal features were included, optimizing both model performance and interpretability.
 
@@ -192,6 +198,14 @@ This project was influenced by these findings to prioritize feature selection. T
 GHI is the most commonly used target variable in solar radiation prediction due to its direct relevance to solar energy applications. Representing the total solar radiation received on a horizontal surface, GHI serves as a key input for designing and optimizing photovoltaic systems. Accurate GHI prediction is essential for estimating solar energy potential, improving energy efficiency, and supporting grid integration of solar power.
 
 The paper 'Global Horizontal Irradiance' \cite{8}, emphasize that GHI prediction benefits from ensemble models that leverage diverse features and data sources. GHI's dependence on meteorological and temporal variables necessitates incorporating these factors into predictive models to capture its inherent variability. This insight guided the focus on GHI as the primary target variable in this project, ensuring alignment with real-world solar energy applications.
+
+\subsection{Pearson Correlation Matrix}
+The Pearson correlation matrix is a statistical tool used to measure the linear correlation between features and the target variable, GHI. It is particularly valuable for identifying which features have the strongest relationships with GHI, aiding in feature selection. Studies such as those by Boutahir et al. \cite{5} demonstrate the effectiveness of correlation analysis in filtering out irrelevant or redundant features. High correlation values indicate strong predictive potential, while low or near-zero values suggest limited relevance. The correlation matrix thus serves as a foundation for feature selection, ensuring that only impactful variables are included in the modeling process.
+
+This project leveraged the Pearson correlation matrix to identify the top features influencing GHI, such as temperature, solar zenith angle, and relative humidity. By focusing on these variables, the models achieved improved interpretability and performance.
+
+\subsection{Evaluation Metrics}
+Evaluation metrics are essential for assessing the performance of predictive models and ensuring they meet project objectives. Metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and \( R^2 \) score are widely used in solar radiation prediction studies. For example, Kumari and Toshniwal \cite{14} highlighted the importance of RMSE for quantifying prediction errors, while Boutahir et al. \cite{Boutahir2022} emphasized \( R^2 \) for measuring the goodness of fit. The consistent use of these metrics ensured meaningful comparisons across different models and datasets, guiding the evaluation and optimization processes.
 \subsection{Ethical Considerations Literature}
 
 Ethical considerations are pivotal in the development of climate technologies like Solar Radiation Management (SRM) and solar radiation prediction models. SRM, as discussed by Svoboda, involves reflecting solar radiation back into space to mitigate global warming \cite{11}. While promising, it raises concerns of moral hazard, procedural injustice, and intergenerational burdens. For example, unilateral deployment could marginalize vulnerable populations and create dependency for future generations.
@@ -212,7 +226,7 @@ The methodology involved data collection, target variable selection, data prepro
 
 \subsection{Data Acquisition} 
 \subsubsection{Database}
-The datasets utilized for this study were sourced from the National Solar Radiation Database (NSRDB), a comprehensive resource maintained by the National Renewable Energy Laboratory (NREL). The NSRDB provides high-resolution solar radiation data, which is widely recognized and employed in renewable energy projects and academic research. The dataset's accessibility and proven reliability ensured compliance with ethical standards and compatibility with prior work.
+The datasets utilized for this study were sourced from the National Solar Radiation Database (NSRDB), a comprehensive resource maintained by the National Renewable Energy Laboratory (NREL). The NSRDB provides high-resolution solar radiation data, which is widely recognized and employed in renewable energy projects and academic research\cite{1}. The dataset's accessibility and proven reliability ensured compliance with ethical standards and compatibility with prior work.
 
 \subsubsection{Dataset Content}
 The datasets were extracted for predefined geographic locations based on latitude and longitude coordinates. Each dataset included consistent features and was retrieved for a specified year to ensure temporal alignment. The datasets encompassed 27 features spanning meteorological, atmospheric, solar radiation, cloud-related, and temporal variables. Key features included Global Horizontal Irradiance (GHI), Direct Normal Irradiance (DNI), Diffuse Horizontal Irradiance (DHI), air temperature, relative humidity, wind speed, atmospheric pressure, and cloud cover. Temporal features such as hour, day, and month added granularity.
@@ -220,7 +234,7 @@ The datasets were extracted for predefined geographic locations based on latitud
 The inclusion of variables aligned with prior literature, ensuring that the dataset captured critical factors influencing solar radiation. This alignment facilitated meaningful comparisons with established methodologies while providing a robust foundation for predictive modeling.
 
 \subsection{Target Variable Selection}
-The target variable selection process focused on identifying GHI as the primary metric for prediction, in comparison to other solar radiation indicators such as DNI, DHI, and Global Normal Irradiance (GNI). GHI's comprehensive nature, capturing both direct and diffuse solar radiation, made it the most practical and widely applicable measure for photovoltaic (PV) systems, which typically operate on flat or slightly tilted surfaces. Additionally, GHI's frequent use in prior studies highlighted its relevance and ensured alignment with existing research. By selecting GHI, this study aimed to maximize the practical utility and generalizability of the predictive models.
+The target variable selection process focused on identifying GHI as the primary metric for prediction, in comparison to other solar radiation indicators such as DNI, DHI, and Global Normal Irradiance (GNI). GHI's comprehensive nature, capturing both direct and diffuse solar radiation, made it the most practical and widely applicable measure for photovoltaic (PV) systems, which typically operate on flat or slightly tilted surfaces\cite{6}. Additionally, GHI's frequent use in prior studies highlighted its relevance and ensured alignment with existing research. By selecting GHI, this study aimed to maximize the practical utility and generalizability of the predictive models.
 
 \subsection{Feature Exploration}
 Initial feature exploration examined the relationships between the predictors and GHI using scatter plots, correlation matrices, and visual analytics. This step informed model selection by identifying linear and nonlinear dependencies in the data.
@@ -250,8 +264,12 @@ Three predictive models were chosen to address the identified linear and nonline
 The selection was guided by insights from feature exploration and prior literature, ensuring that the models addressed the complexities of the dataset while providing interpretable and scalable solutions.
 
 \subsection{Feature Selection}
-Feature selection aimed to retain the most impactful predictors while minimizing redundancy. A correlation matrix identified features with strong relationships to GHI, flagging variables with a correlation threshold above 0.07 as significant. The top features included Temperature, Hour, Solar Zenith Angle, Relative Humidity, and Cloud Type. Highly correlated features, such as temporal indicators (e.g., year, month, day) and redundant solar radiation metrics (Clearsky GHI, Clearsky DHI, Clearsky DNI), were removed to avoid multicollinearity. This step streamlined the dataset to 16 features, enhancing interpretability and reducing computational complexity.
-
+Feature selection aimed to retain the most impactful predictors while minimizing redundancy. A correlation matrix identified features with strong relationships to GHI, flagging variables with a correlation threshold above 0.07 as significant. The top features included Temperature, Hour, Solar Zenith Angle, Relative Humidity, and Cloud Type. Highly correlated features, such as temporal indicators (e.g., year, month, day). The result of the features temperature and solar zenith angle having high correlation to GHI is consistent with prior studies \cite{5},\cite{14},\cite{18}. Redundant solar radiation metrics (Clearsky GHI, Clearsky DHI, Clearsky DNI), were removed to avoid multicollinearity. This step streamlined the dataset to 16 features, enhancing interpretability and reducing computational complexity.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{GHI.png}
+    \caption{Enter Caption}
+\end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{fincorr.png}
@@ -357,7 +375,8 @@ The Decision Tree Regressor\ref{Figure 3} was seen to provide a strong standalon
 Linear regression\ref{Figure 2}, while interpretable, showed limitations in handling non-linear dependencies, achieving the highest MAE score of 57.38 and RMSE score of 80.49 and lowest R\textsuperscript{2} score of 0.93. 
 
 Hence, it was observed that the linear regression's  limitations in handling nonlinear dependencies resulted in lower accuracy while the decision tree regressor's relatively small increase in error compared to the stacking regressor indicated that nonlinear features play a significant role in predicting GHI. Furthermore,
-the stacking regressor was seen to leverage the complementary strengths of both models, reducing errors. These results demonstrate the effectiveness of ensemble methods in solar radiation prediction. Limitations include computational overhead and reliance on high-quality input data. Future work could explore deep learning techniques or incorporate real-time data for adaptive forecasting.
+the stacking regressor was seen to leverage the complementary strengths of both models, reducing errors. These results demonstrate the effectiveness of ensemble methods in solar radiation prediction. The results are consistent with prior studies from the literature review \cite{3},\cite{18},\cite{17}, which also found the linear regression to perform the best, decision tree regressor to be a strong performer, and ensemble models such as stacking regressor to outperform single models. 
+Limitations include computational overhead and reliance on high-quality input data. Future work could explore deep learning techniques or incorporate real-time data for adaptive forecasting.
 \subsection{Discussion and Analysis for Case Study 2} For Case Study 2, the objective was to predict Global Horizontal Irradiance (GHI) for San Francisco using a model trained on data from San Mateo and Berkeley, without direct access to San Francisco data. The stacking regressor using the data for just the combined dataset presented strong performance with low MAE and RMSE values of 15.42 and 37.01 and a high R\textsuperscript{2} value of 0.986.
 The strong performance metrics reflect the geographic and climatic similarity between San Mateo and Berkeley, ensuring that the model could effectively learn from the shared patterns in solar radiation across the two locations. The results were then backtested on San Francisco dataset.
 When the stacking regressor trained on the combined San Mateo and Berkeley dataset and  applied to the \{San Francisco dataset}, the results showed moderate success with MAE and RMSE values of 28.30 and 54.07 and a R\textsuperscript{2} of 0.967.  The moderate increase in MAE and RMSE suggests that while the San Mateo and Berkeley datasets provide a solid foundation for training, local nuances in San Francisco's solar radiation patterns could introduce additional complexity that the model struggles to capture. Despite these challenges, the \( R^2 \) score of 96.7\% indicates that the model generalizes reasonably well..
@@ -730,6 +749,17 @@ notebook==6.4.3
 
 \bibitem{energy_proceedings} Energy Proceedings. (n.d.). Machine learning models for solar irradiance prediction. Retrieved from \url{https://www.energy-proceedings.org/wp-content/uploads/icae2021/1642315686.pdf}.
 \bibitem{ethics_climate} Svoboda, T. (n.d.). The ethics of climate engineering: Solar radiation management and non-ideal justice. Retrieved from \url{https://ndpr.nd.edu/reviews/the-ethics-of-climate-engineering-solar-radiation-management-and-non-ideal-justice/}.
+\bibitem{Boutahir2022} Boutahir, M. K., Farhaoui, Y., Azrour, M., Zeroual, I., & El Allaoui, A. (2022). Effect of feature selection on the prediction of direct normal irradiance. \textit{Big Data Mining and Analytics, 5}(4), 309--317. \url{https://doi.org/10.26599/BDMA.2022.9020003}
+
+\bibitem{Kumari2021} Kumari, P., & Toshniwal, D. (2021). Machine learning techniques for hourly global horizontal irradiance prediction: A case study for smart cities of India. \textit{Energy Proceedings, 18}, 69. \url{https://www.energy-proceedings.org/wp-content/uploads/icae2021/1642315686.pdf}
+
+\bibitem{Khalifa2022} Khalifa, B. M., Farhaoui, Y., Azrour, M., Zeroual, I., & El Allaoui, A. (2022). Exploring and forecasting solar radiation with machine learning models. \textit{Energy Reports}. Retrieved from \url{https://www.energy-reports.org}
+\bibitem{AnalyticsVidhya2019} Analytics Vidhya. (2019). 11 Important Model Evaluation Metrics. Retrieved from \url{https://www.analyticsvidhya.com/blog/2019/08/11-important-model-evaluation-error-metrics/}
+
+\bibitem{ScikitLearnTree} Scikit-learn. (n.d.). Tree regression example. Retrieved from \url{https://scikit-learn.org/1.5/auto_examples/tree/plot_tree_regression.html}
+
+\bibitem{AnalyticsVidhya2020} Analytics Vidhya. (2020). Improve Predictive Model Score Using Stacking Regressor. Retrieved from \url{https://www.analyticsvidhya.com/blog/2020/12/improve-predictive-model-score-stacking-regressor/}
+
 
 \end{thebibliography}
 
@@ -739,3 +769,4 @@ notebook==6.4.3
 
 \printbibliography
 \end{document}
+
