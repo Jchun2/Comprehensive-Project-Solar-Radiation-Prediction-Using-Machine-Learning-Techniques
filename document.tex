@@ -1,6 +1,5 @@
 
 
-
 \documentclass[10pt,twocolumn]{article}
 
 % use the oxycomps style file
@@ -22,6 +21,8 @@
     /Title (Predicting Solar Radiation using Machine Learning Techniques )
     /Author (Julia Chun)
 }
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
 
 % set the title and author information
 \title{Comprehensive Project: {Solar Radiation Prediction Using Machine Learning}}
@@ -36,7 +37,7 @@
 \section{Problem Statement }
 Climate change and global warming are global concerns where the implications are crucial and urgent. Changes to Earth's climate are driven by increased human emissions of greenhouse gases and these effects are seen having widespread effects on the environment. This concern is not a future problem as it was reported that effects that had long predicted would result from global climate change are now occurring, such as sea ice loss, accelerated sea level rise, and longer, more intense heat waves\cite{2}. Furthermore, these environmental implications impact various sectors of society and are interrelated. For instance, factors such as drought and flooding not only could cause damages to ecosystems and infrastructure, but could also impact food production and human health\cite{2}.
 
-Solar radiation prediction plays a critical role in optimizing renewable energy systems and advancing climate science. This project focuses on predicting Global Horizontal Irradiance (GHI), an indicator of solar radiance, using machine learning techniques by leveraging data from the National Solar Radiation Database (NSRDB).  Accurate prediction of GHI is essential for optimizing solar energy systems, enhancing energy efficiency, and supporting the integration of renewable energy into the grid. However, modeling GHI is challenging due to the complex interplay of atmospheric conditions, geographic factors, and temporal variations.
+Solar radiation prediction plays a critical role in optimizing renewable energy systems and advancing climate science\cite{4}. This project focuses on predicting Global Horizontal Irradiance (GHI), an indicator of solar radiance, using machine learning techniques by leveraging data from the National Solar Radiation Database (NSRDB).  Accurate prediction of GHI is essential for optimizing solar energy systems, enhancing energy efficiency, and supporting the integration of renewable energy into the grid. However, modeling GHI is challenging due to the complex interplay of atmospheric conditions, geographic factors, and temporal variations.
 
 This paper explores and compares different machine learning techniques—linear regression, decision trees, and stacking regressors—for modeling and predicting GHI at a given location. The primary goal is to assess the effectiveness of each technique in capturing the intricate patterns of solar radiation and providing reliable predictions.
 
@@ -49,7 +50,7 @@ The dataset utilized for this study contains several key solar radiation indicat
 
 \subsubsection{Global Horizontal Irradiance (GHI)}
 \begin{itemize}
-     GHI represents the total solar radiation received per unit area on a horizontal surface. It is the sum of Direct Normal Irradiance (DNI) and Diffuse Horizontal Irradiance (DHI), adjusted for the angle of incidence of the sun.GHI is the most commonly used metric for photovoltaic (PV) systems, as it captures both direct and diffuse solar radiation. It provides a comprehensive measure of the total energy available for solar power generation on flat or slightly tilted surfaces. This feature could be usedin the design, performance assessment, and optimization of PV systems. It is also crucial for energy forecasting and resource assessment.
+     GHI represents the total solar radiation received per unit area on a horizontal surface\cite{7}. It is the sum of Direct Normal Irradiance (DNI) and Diffuse Horizontal Irradiance (DHI), adjusted for the angle of incidence of the sun.GHI is the most commonly used metric for photovoltaic (PV) systems, as it captures both direct and diffuse solar radiation\cite{7}. It provides a comprehensive measure of the total energy available for solar power generation on flat or slightly tilted surfaces. This feature could be usedin the design, performance assessment, and optimization of PV systems. It is also crucial for energy forecasting and resource assessment.
 \end{itemize}
 
 \subsubsection{Direct Normal Irradiance (DNI)}
@@ -90,7 +91,7 @@ Understanding and utilizing these indicators can be essential for applications s
 The project utilizes three machine learning models: linear regression, decision tree regression, and stacking regression. These models were chosen to explore the predictive capabilities of both simple and complex techniques for handling the relationships within the solar radiation dataset. Below is an explanation of each model:
 
 \subsubsection{Linear Regression}
-     Linear regression is a fundamental machine learning technique that models the relationship between a dependent variable (e.g., GHI) and one or more independent variables (e.g., temperature, cloud type) as a linear equation. The strength of a linear regression model is how it is interpretable, computationally efficient, and works well for features with strong linear relationships to the target variable. However, there are limitaions of a linear regression model as it struggles with capturing nonlinear relationships, which are common in solar radiation data due to factors like atmospheric scattering and cloud cover.
+     Linear regression is a fundamental machine learning technique that models the relationship between a dependent variable (e.g., GHI) and one or more independent variables (e.g., temperature, cloud type) as a linear equation\cite{3}. The strength of a linear regression model is how it is interpretable, computationally efficient, and works well for features with strong linear relationships to the target variable\cite{3}. However, there are limitaions of a linear regression model as it struggles with capturing nonlinear relationships, which are common in solar radiation data due to factors like atmospheric scattering and cloud cover.
 
 
 \subsubsection{Decision Tree Regression}
@@ -465,14 +466,24 @@ The following software and packages are required to replicate the project:
     Ensure that the installed library versions match or exceed the required versions.
 \end{enumerate}
 
-\subsection*{3. Dataset Preparation}
+\subsection*{3. Data Collection}
+The datasets used in this project were sourced from the \textbf{National Solar Radiation Database (NSRDB)}, maintained by the National Renewable Energy Laboratory (NREL). The NSRDB provides high-resolution solar radiation data, including Global Horizontal Irradiance (GHI), Direct Normal Irradiance (DNI), and Diffuse Horizontal Irradiance (DHI), which are critical for solar energy research and predictive modeling.
+
 \begin{itemize}
-    \item The datasets used in this project include data from San Francisco, San Mateo, Berkeley, Los Angeles, and San Diego. Ensure you have access to these datasets in CSV format.
-    \item Place all dataset files in a directory named \texttt{datasets} within the project folder.
-    \item Ensure the datasets are preprocessed to align feature names and remove unnecessary columns as described in the methods section.
+    \item \textbf{Accessing the NSRDB:} Datasets can be downloaded from the official NSRDB data viewer at \url{https://nsrdb.nrel.gov/data-viewer}.
+    \item \textbf{Selection Criteria:} Data is retrieved by specifying latitude and longitude coordinates for the desired location, along with the year of interest. Each downloaded dataset includes temporal, meteorological, and atmospheric features.
+    \item \textbf{Preprocessing:} Once downloaded, the datasets are preprocessed to align feature names, remove redundant columns, and handle missing values. This ensures compatibility with the modeling pipeline.
 \end{itemize}
 
-\subsection*{4. Running the Code}
+For this project, datasets were collected for the following locations: San Francisco, San Mateo, Berkeley, Los Angeles, and San Diego. All downloaded files should be saved in CSV format and placed in the project directory.
+
+\subsection*{4. Dataset Preparation}
+\begin{itemize}
+    \item Place all dataset files in the same directory as the Jupyter notebook for simplified access.
+    \item Ensure the datasets are preprocessed as described in the methods section to align feature names and remove unnecessary columns.
+\end{itemize}
+
+\subsection*{5. Running the Code}
 \begin{enumerate}
     \item Launch Jupyter Notebook:
     \begin{verbatim}
@@ -488,7 +499,7 @@ The following software and packages are required to replicate the project:
     \item Outputs, including performance metrics and visualizations, will be generated in the notebook.
 \end{enumerate}
 
-\subsection*{5. Notes for Future Users}
+\subsection*{6. Notes for Future Users}
 \begin{itemize}
     \item \textbf{Compatibility:} Ensure compatibility of Python and library versions as updates may introduce breaking changes.
     \item \textbf{Reproducibility:} Use the provided requirements file to replicate the exact environment:
@@ -500,17 +511,16 @@ The following software and packages are required to replicate the project:
     \item \textbf{Error Handling:} Common errors, such as mismatched feature names, are documented in the notebook along with troubleshooting steps.
 \end{itemize}
 
-\subsection*{6. Additional Resources}
+\subsection*{7. Additional Resources}
 For further assistance, refer to the following resources:
 \begin{itemize}
     \item Jupyter Notebook Documentation: \url{https://jupyter.org/}
     \item Python Package Index (PyPI): \url{https://pypi.org/}
     \item scikit-learn User Guide: \url{https://scikit-learn.org/stable/user_guide.html}
+    \item National Solar Radiation Database (NSRDB): \url{https://nsrdb.nrel.gov/}
 \end{itemize}
 
-\newpage
 
-\section*{Appendix: Code Architecture Overview}
 
 
 \section*{Appendix: Code Architecture Overview}
@@ -518,7 +528,21 @@ For further assistance, refer to the following resources:
 This appendix provides an overview of the code architecture, outlining the structure and organization of the project. The goal is to enable another developer to extend, debug, or enhance the project effectively. The layout below reflects the structure of the Jupyter Notebook used in this project.
 
 \subsection*{1. Project Structure}
-The project is organized into the following directory and file structure:
+\begin{itemize}
+    \item \textbf{Datasets:}  Each dataset is a CSV file corresponding to a specific geographic region, ensuring consistency and organization.
+    \item \textbf{Notebook:} The primary analysis, modeling, and visualization are conducted in a Jupyter notebook, \texttt{SolarRadiationPrediction.ipynb}. This notebook is structured into logical sections, including data loading, preprocessing, feature exploration, model training, evaluation, and visualization.
+    \item \textbf{Modules:} To streamline the workflow and promote reusability, core functionalities are implemented directly within notebook cells, as follows:
+     \item\textbf{Data Preprocessing:} Handles data cleaning, feature selection, and transformations.
+        \item \textbf{Model Training:} Includes model initialization, training, hyperparameter tuning, and evaluation.
+        \item \textbf{Visualization:} Generates scatter plots, residual plots, correlation heatmaps, and feature importance visualizations.
+        \item \textbf{Evaluation Metrics:} Calculates MAE, RMSE, and R\textsuperscript{2} scores to assess model performance.
+    \end{itemize}
+    \item \textbf{Results:} Output files, such as plots and evaluation summaries, can be viewed after running the cells in {SolarRadiationPrediction.ipynb}.
+    \item \textbf{Dependencies:} Section 8 lists all the necessary Python packages and their versions, ensuring replicability.
+\end{itemize}
+
+    \begin{itemize}
+Although my project was organized in the same directory for simplicity for the porgram to read the files, the project can be organized into the following directory and file structure. 
 \begin{verbatim}
 project_root/
 ├── datasets/
@@ -534,9 +558,15 @@ project_root/
 ├── requirements.txt
 └── README.md
 \end{verbatim}
+\subsection*{2. Execution Workflow}
+\begin{enumerate}
+    \item Open the Jupyter Notebook \texttt{SolarRadiationPrediction.ipynb}.
+    \item Execute cells sequentially, following the outlined structure.
+    \item Save outputs, including performance metrics and visualizations, in the \texttt{results/} directory.
+\end{enumerate}
 
-\subsection*{2. Jupyter Notebook Cell Layout}
-The Jupyter Notebook is organized into the following sections, with each section corresponding to specific cells:
+\subsection*{3. Jupyter Notebook Cell Layout}
+The Jupyter Notebook is organized into the following sections. Note my notebook starts at line 32 as previous methods were deleted:
 
 \subsubsection*{1. Setup}
 \begin{itemize}
@@ -590,27 +620,76 @@ The Jupyter Notebook is organized into the following sections, with each section
     \item Discuss insights and implications from each case study.
 \end{itemize}
 
-\subsubsection*{7. Conclusion}
+\subsubsection*{7. Analysis}
 \begin{itemize}
     \item Summarize findings from the models and case studies.
     \item Highlight strengths, limitations, and potential improvements.
 \end{itemize}
 
-\subsection*{3. Execution Workflow}
-\begin{enumerate}
-    \item Open the Jupyter Notebook \texttt{SolarRadiationPrediction.ipynb}.
-    \item Execute cells sequentially, following the outlined structure.
-    \item Save outputs, including performance metrics and visualizations, in the \texttt{results/} directory.
-\end{enumerate}
+
 
 \subsection*{4. Extensibility and Debugging}
 \begin{itemize}
-    \item \textbf{Adding New Features:} Developers can add new cells for additional preprocessing methods, models, or evaluation metrics.
     \item \textbf{Debugging:} Inline comments and logical grouping of cells make it easier to identify and fix issues.
-    \item \textbf{Future Integration:} The notebook can be extended to include new datasets, advanced models, or deployment capabilities.
+    \item \textbf{Incorporate New Data:} Add datasets for additional geographic regions in the \texttt{datasets/} directory and update the preprocessing and training pipeline to include these files.
+    \item \textbf{Add New Models:} Include additional machine learning algorithms (e.g., Random Forests, Gradient Boosting) by appending new cells for model implementation and evaluation.
+    \item \textbf{Enhance Visualizations:} Modify visualization cells to include interactive plots or additional performance metrics using libraries such as Plotly.
+    \item \textbf{Real-Time Prediction:} Develop an API or integration for real-time prediction by exporting the trained models and using them in a live environment.
 \end{itemize}
 
 This layout ensures that the project is accessible for replication, extensibility, and debugging, enabling effective collaboration and adaptation.
+
+
+
+\end{itemize}
+
+\subsection{Code Architecture Diagram}
+The following diagram illustrates the organization of the project:
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[node distance=2cm]
+        % Define nodes
+        \node (datasets) [rectangle, draw, text centered, minimum width=4cm, minimum height=1cm] {Datasets (\texttt{datasets/})};
+        \node (notebook) [rectangle, draw, below of=datasets, text centered, minimum width=6cm, minimum height=1cm] {Jupyter Notebook (\texttt{SolarRadiationPrediction.ipynb})};
+        \node (preprocessing) [rectangle, draw, below left of=notebook, text centered, minimum width=3cm, minimum height=1cm, xshift=-2.5cm] {Data Preprocessing};
+        \node (training) [rectangle, draw, below of=notebook, text centered, minimum width=3cm, minimum height=1cm] {Model Training};
+        \node (visualization) [rectangle, draw, below right of=notebook, text centered, minimum width=3cm, minimum height=1cm, xshift=2.5cm] {Visualization};
+        \node (results) [rectangle, draw, below of=training, text centered, minimum width=4cm, minimum height=1cm] {Results (\texttt{results/})};
+
+        % Draw arrows
+        \draw[->] (datasets) -- (notebook);
+        \draw[->] (notebook) -- (preprocessing);
+        \draw[->] (notebook) -- (training);
+        \draw[->] (notebook) -- (visualization);
+        \draw[->] (preprocessing) -- (training);
+        \draw[->] (training) -- (visualization);
+        \draw[->] (training) -- (results);
+    \end{tikzpicture}
+    \caption{Code Architecture Overview}
+    \label{fig:code_architecture}
+\end{figure}
+
+\subsection{5. Justification of Design}
+This architecture promotes:
+\begin{itemize}
+    \item \textbf{Modularity:} Functions and operations are organized within various cells of the notebook, making the workflow easy to follow and debug.
+    \item \textbf{Reusability:} Key processes, such as data preprocessing and evaluation metrics, can be reused across different datasets or models.
+    \item \textbf{Scalability:} The structure supports  integration of additional datasets, features, or models without major architectural changes.
+    \item \textbf{Transparency:} The Jupyter notebook provides a clear narrative of the workflow, ensuring replicability and ease of understanding for new contributors.
+\end{itemize}
+\subsection*{8. Requirements File}
+Below lists all the necessary Python packages and their versions, ensuring replicability.
+\begin{verbatim}
+pandas==1.3.3
+numpy==1.21.2
+scikit-learn==1.0.2
+matplotlib==3.4.3
+seaborn==0.11.2
+notebook==6.4.3
+\end{verbatim}
+
+
 
 
 
